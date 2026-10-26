@@ -1,0 +1,13 @@
+node_modules/
+.pnpm-store/
+.tools/
+dist/
+output/
+screenshots/
+assets/references/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db

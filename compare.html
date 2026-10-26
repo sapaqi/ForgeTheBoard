@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ForgeTheBoard — porównanie hero</title>
+  <link rel="icon" href="assets/anvil.svg" type="image/svg+xml">
+  <style>
+    @font-face{font-family:Saira;src:url('assets/fonts/saira.ttf') format('truetype');font-weight:100 900;font-display:swap}
+    *{box-sizing:border-box}body{margin:0;background:#F5EFE2;color:#410001;font-family:Saira,Arial,sans-serif}.compare-shell{height:100dvh;display:grid;grid-template-rows:auto 1fr}.review-bar{display:flex;align-items:center;gap:25px;padding:15px 24px;border-bottom:1px solid #41000126}.review-brand{font-size:13px;font-weight:700;line-height:1.4}.review-brand small{display:block;font-size:10px;font-weight:400;color:#796859}.variant-controls{display:flex;gap:6px;flex-wrap:wrap}.variant-controls button{font:600 13px Saira,Arial;cursor:pointer;min-height:44px;padding:9px 18px;border:1px solid #41000130;background:transparent;color:#410001;transition:background .15s,color .15s}.variant-controls button[aria-pressed=true]{background:#410001;color:#F5EFE2;border-color:#410001}.variant-controls button:hover{border-color:#D82F00}.variant-controls button:focus-visible,.open-version:focus-visible{outline:3px solid #D82F00;outline-offset:3px}.open-version{margin-left:auto;white-space:nowrap;color:#D82F00;text-decoration:none;font-size:12px;font-weight:600}iframe{display:block;width:100%;height:100%;min-height:0;border:0;background:#F5EFE2}@media(max-width:620px){.review-bar{padding:12px 15px;gap:12px;flex-wrap:wrap}.review-brand{font-size:11px}.variant-controls{order:3;width:100%}.variant-controls button{flex:1;font-size:11px;padding:7px 9px}.open-version{font-size:10px}}
+    .variant-controls button:hover,.variant-controls button:focus-visible{background:#410001;color:#F5EFE2;border-color:#410001;box-shadow:0 5px 12px #41000122}
+  </style>
+  <script src="compare.js" defer></script>
+</head>
+<body>
+  <main class="compare-shell">
+    <header class="review-bar">
+      <p class="review-brand">ForgeTheBoard<small>Dwa warianty hero do porównania</small></p>
+      <div class="variant-controls" role="group" aria-label="Wybierz wariant hero">
+        <button type="button" data-variant="fade" aria-pressed="true">A · Subtelny fade</button>
+        <button type="button" data-variant="parchment" aria-pressed="false">B · Brzeg pergaminu</button>
+      </div>
+      <a class="open-version" href="./?hero=fade" target="_blank" rel="noopener">Otwórz pełną wersję ↗</a>
+    </header>
+    <iframe src="./?hero=fade" title="Wariant A — subtelny fade" id="variant-preview"></iframe>
+    <noscript><p><a href="./?hero=fade">Wariant A — fade</a> · <a href="./?hero=parchment">Wariant B — pergamin</a></p></noscript>
+  </main>
+</body>
+</html>

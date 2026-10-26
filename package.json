@@ -1,0 +1,16 @@
+{
+  "name": "forgetheboard-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lokalny landing page ForgeTheBoard",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "check": "node --check app.js && node --check assets/js/motion-effects.js && node --check assets/js/hero-watercolour.js && node --check compare.js && node --check server.mjs",
+    "vendor": "node scripts/sync-animation-vendor.mjs"
+  },
+  "dependencies": {
+    "motion": "14.6.0",
+    "three": "0.186.1"
+  }
+}
