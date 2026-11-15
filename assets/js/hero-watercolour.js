@@ -6,8 +6,19 @@ export async function paintHero({ animate, preference, preview }) {
   const host = document.querySelector('.map-canvas');
   const image = host?.querySelector('.world-image');
   const journey = document.querySelector('.forge-journey');
+  if (!host || !image || !journey || preview) return () => {};
+  return paintArtwork({
+    host, image, animate, preference,
+    canPaint: () => scrollY <= journey.offsetHeight
+  });
+}
+
+export async function paintArtwork({
+  host, image, animate, preference, canPaint = () => true, duration, delay = 0, onUnavailable,
+  sketchReturn = 0, inkColor
+}) {
   const noop = () => {};
-  if (!host || !image || preview || preference.matches || scrollY > journey.offsetHeight) return noop;
+  if (preference.matches || !canPaint()) return noop;
 
   let renderer, texture, material, geometry, observer, animation, canvas;
   let disposed = false;
@@ -28,12 +39,12 @@ export async function paintHero({ animate, preference, preview }) {
     // Load locally, only when motion is allowed. The HTML image stays underneath.
     const THREE = await import('../vendor/three.module.js');
     await image.decode();
-    if (preference.matches || scrollY > journey.offsetHeight) return noop;
+    if (preference.matches || !canPaint()) return noop;
     // Never use the CSS-sized DOM image as a texture source. Three's mip level
     // calculation uses image.width: at 4K this exceeds the decoded 1536px width
     // and requests an invalid mip chain, producing an all-black texture.
     texture = await new THREE.TextureLoader().loadAsync(image.currentSrc || image.src);
-    if (preference.matches || scrollY > journey.offsetHeight) { dispose(); return noop; }
+    if (preference.matches || !canPaint()) { dispose(); return noop; }
     renderer = new THREE.WebGLRenderer({ alpha: false, antialias: false, powerPreference: 'low-power' });
     renderer.setClearColor(0xf5efe2, 1);
     canvas = renderer.domElement;
@@ -45,7 +56,11 @@ export async function paintHero({ animate, preference, preview }) {
     };
     // Raw sRGB samples/output match the HTML image exactly at the final frame.
     const uniforms = {
-      uMap: { value: texture }, uProgress: { value: 0 },
+      uMap: { value: texture }, uProgress: { value: sketchReturn ? 1 : 0 },
+      uInk: { value: inkColor
+        ? new THREE.Color(inkColor).convertLinearToSRGB()
+        : new THREE.Vector3(.255, .075, .047) },
+      uBoldSketch: { value: Boolean(sketchReturn) },
       uCover: { value: new THREE.Vector2(1, 1) },
       uPosition: { value: new THREE.Vector2(.62, .54) },
       uTexel: { value: new THREE.Vector2(1 / image.naturalWidth, 1 / image.naturalHeight) }
@@ -57,6 +72,8 @@ export async function paintHero({ animate, preference, preview }) {
       fragmentShader: `
         uniform sampler2D uMap;
         uniform float uProgress;
+        uniform vec3 uInk;
+        uniform bool uBoldSketch;
         uniform vec2 uCover, uPosition, uTexel;
         varying vec2 vUv;
         float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
@@ -70,6 +87,7 @@ export async function paintHero({ animate, preference, preview }) {
         float inkLuma(vec3 c) { return dot(c,vec3(.299,.587,.114)); }
         void main() {
           vec2 uv=vUv*uCover+(1.0-uCover)*uPosition;
+          vec3 basePaper=vec3(.9608,.9373,.8863);
           vec3 color=texture2D(uMap,uv).rgb;
           float l=inkLuma(color);
           // Colour-dodge pencil extraction: local light areas become blank paper,
@@ -81,10 +99,18 @@ export async function paintHero({ animate, preference, preview }) {
           blur+=inkLuma(texture2D(uMap,uv-uTexel*vec2(0,3)).rgb);
           blur*=.25;
           float edge=clamp((blur-l)*5.2,0.0,.8);
+          if (uBoldSketch) {
+            float darkest=min(l,min(
+              min(inkLuma(texture2D(uMap,uv+uTexel*vec2(2,0)).rgb),
+                  inkLuma(texture2D(uMap,uv-uTexel*vec2(2,0)).rgb)),
+              min(inkLuma(texture2D(uMap,uv+uTexel*vec2(0,2)).rgb),
+                  inkLuma(texture2D(uMap,uv-uTexel*vec2(0,2)).rgb))
+            ));
+            edge=clamp((blur-darkest)*8.5+(1.0-l)*.16,0.0,1.0);
+          }
           float grain=hash(uv*vec2(1536,1024));
-          vec3 paper=vec3(.9608,.9373,.8863)+(grain-.5)*.024;
-          vec3 ink=vec3(.255,.075,.047);
-          vec3 sketch=mix(paper,ink,edge*.8);
+          vec3 paper=basePaper+(grain-.5)*.024;
+          vec3 sketch=mix(paper,uInk,edge*(uBoldSketch ? 1.0 : .8));
           // Several overlapping brush passes, feathered by coarse paper fibres.
           // The front spreads over the image, rather than crossfading saturation.
           float fibre=paperNoise(uv*19.0);
@@ -130,8 +156,10 @@ export async function paintHero({ animate, preference, preview }) {
         bufferHeight = nextHeight;
       }
       const aspect = width / height, sourceAspect = image.naturalWidth / image.naturalHeight;
-      uniforms.uCover.value.set(Math.min(1, aspect / sourceAspect), Math.min(1, sourceAspect / aspect));
-      const position = getComputedStyle(image).objectPosition.split(' ').map(parseFloat);
+      const style = getComputedStyle(image);
+      const fit = style.objectFit === 'contain' ? Math.max : Math.min;
+      uniforms.uCover.value.set(fit(1, aspect / sourceAspect), fit(1, sourceAspect / aspect));
+      const position = style.objectPosition.split(' ').map(parseFloat);
       uniforms.uPosition.value.set(position[0] / 100, 1 - position[1] / 100);
       draw();
     }
@@ -142,9 +170,17 @@ export async function paintHero({ animate, preference, preview }) {
     observer = new ResizeObserver(resize);
     observer.observe(host);
     animation = animate(0, 1, {
-      duration: innerWidth <= 760 ? 3.2 : 4, ease: [.25, .25, .5, 1],
-      onUpdate: progress => {
+      duration: duration ?? (innerWidth <= 760 ? 3.2 : 4), delay,
+      ease: sketchReturn ? 'linear' : [.25, .25, .5, 1],
+      onUpdate: elapsed => {
         if (preference.matches) { dispose(); return; }
+        let progress = elapsed;
+        if (sketchReturn) {
+          const phase = elapsed < sketchReturn
+            ? 1 - elapsed / sketchReturn
+            : (elapsed - sketchReturn) / (1 - sketchReturn);
+          progress = phase * phase * (3 - 2 * phase);
+        }
         uniforms.uProgress.value = progress;
         host.style.setProperty('--paint-progress', progress.toFixed(3));
         draw();
@@ -155,6 +191,6 @@ export async function paintHero({ animate, preference, preview }) {
   } catch (error) {
     dispose();
     console.warn('Watercolour: original image remains visible.', error);
-    return noop;
+    return onUnavailable?.() ?? noop;
   }
 }

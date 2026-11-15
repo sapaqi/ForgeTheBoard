@@ -11,12 +11,6 @@ document.querySelectorAll('[data-start]').forEach(button => button.addEventListe
 document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
 document.querySelector('#dialog-workshop').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
-const menuButton = document.querySelector('.menu-toggle');
-const mobileNav = document.querySelector('#mobile-nav');
-function closeMenu() { mobileNav.hidden = true; menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Otwórz menu'); }
-menuButton.addEventListener('click', () => { const open = menuButton.getAttribute('aria-expanded') !== 'true'; mobileNav.hidden = !open; menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu'); });
-mobileNav.querySelectorAll('a,button').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', event => { if (event.key === 'Escape' && !mobileNav.hidden) { closeMenu(); menuButton.focus(); } });
 const journey = document.querySelector('.forge-journey');
 const stage = document.querySelector('.journey-stage');
 const artifact = document.querySelector('.map-artifact');
@@ -174,4 +168,3 @@ workshopTabs.forEach((tab,index)=>{
     event.preventDefault(); selectWorkshopTab(workshopTabs[next],true);
   });
 });
-
