@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pl"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge the Board · Studium kierunku</title>
+<style>
+@font-face{font-family:Saira;src:url(../assets/fonts/saira.ttf)}@font-face{font-family:Fell;src:url(../assets/fonts/im-fell-italic.ttf);font-style:italic}
+*{box-sizing:border-box}body{margin:0;background:#f5efe2;color:#410001;font:16px/1.6 Saira,system-ui,sans-serif}main{width:min(1160px,92%);margin:auto}header,section,footer{padding:clamp(24px,6vw,72px) 0;border-bottom:1px solid #41000130}h1,h2,h3,p,figure{margin:0 0 .75rem}h1{font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.04}h2{font-size:clamp(1.7rem,4vw,3rem);line-height:1.12}p{max-width:74ch}em{font-family:Fell,Georgia,serif;color:#a62506}a{color:#922200}.grid,.atlas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.atlas img{width:100%;display:block}figcaption{font-size:.86rem}.hero,.tablet{position:relative;overflow:hidden;min-height:280px;isolation:isolate;padding:24px;border:1px solid #41000135}.hero,.tablet{background:url(../assets/world-map.webp) 62% 52%/cover}.hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,#f5efe2 8%,#f5efe2f2 29%,#f5efe200 66%)}.hero h3{font-size:clamp(1.7rem,4vw,3rem);line-height:1.05}.hero p{max-width:19ch}.tablet{border:9px solid #410001;border-radius:16px;padding:0}.toolbar{background:#f5efe2;padding:.5rem .8rem}.pin{position:absolute;left:63%;top:55%;width:18px;height:18px;border:3px solid white;border-radius:100%;background:#d82f00;box-shadow:0 0 0 1px #410001}.cta{display:inline-block;background:#d82f00;color:white;padding:.5rem .8rem}.options{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}.options label{cursor:pointer;border:1px solid #41000155;padding:.5rem .7rem;display:flex;align-items:center;gap:.5rem}.options label:has(input:checked){border-color:#d82f00;background:#d82f0011}.options label:focus-within{outline:2px solid #410001;outline-offset:3px}.options svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5}.panel{display:none;padding:.9rem;border-left:2px solid #d82f00}.demo:has(#map:checked) #map-p,.demo:has(#cards:checked) #cards-p,.demo:has(#rules:checked) #rules-p{display:block}nav{display:flex;flex-wrap:wrap;gap:1rem}dt{font-weight:700}dd{margin:0 0 1rem}@media(max-width:660px){.grid,.atlas{grid-template-columns:1fr}.hero:before{background:linear-gradient(#f5efe2 0%,#f5efe2f5 38%,transparent 82%)}.hero{min-height:320px}.hero .pin{top:78%}}
+.swatches,.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr));gap:16px}.chip{height:64px;border:1px solid #41000135}.type,.brand-sample,.card,.gallery figure{padding:16px;border:1px solid #41000135}.type>div+div{border-top:1px solid #41000135;padding-top:12px}.brand-sample,.gallery figure{display:grid;align-content:space-between;gap:12px}.brand-sample img,.gallery img{width:100%;max-height:160px}.gallery img{height:155px;object-fit:contain}.dark,.app-icon{background:#410001;color:#f5efe2}.app-icon{display:grid;place-items:center;background:#e9dfc9;border-radius:23%;width:82px;aspect-ratio:1}.app-icon img,.brand-sample .anvil{width:54px}.brand-sample .app-icon-art{width:116px;height:116px;object-fit:contain;padding:10px;background:#e9dfc9;border-radius:24px}.card :is(button,input,select,textarea){font:inherit}.card :is(input:not([type=checkbox]),select,textarea){display:block;width:100%;min-height:44px;border:1px solid #796859;background:#fffaf1;color:#410001;padding:8px}.card label{display:block;margin-top:8px;font-weight:700}.card .inline input{accent-color:#a62506}.card :is(p,details){margin-top:10px}.card summary{cursor:pointer;padding:8px 0;border-top:1px solid #41000135}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.primary,.actions button{min-height:44px;padding:8px 16px;border:1px solid transparent;cursor:pointer}.primary{background:#b92700;color:white}.primary:hover{background:#410001}.actions button:disabled{background:#e9dfc9;color:#796859;cursor:default}.card [aria-invalid=true]{border:2px solid #a62506!important}.error{color:#a62506}:focus-visible{outline:2px solid #410001;outline-offset:3px}dialog{background:#f5efe2;color:#410001;border:1px solid #796859;padding:24px;max-width:min(440px,90vw)}dialog::backdrop{background:#41000199}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.gallery img{height:430px;max-height:none}.cta-stage{display:flex;flex-wrap:wrap;gap:24px;padding:32px 0}.forge-button{isolation:isolate;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:56px;max-width:100%;padding:14px 29px;border:0;background:transparent;color:#fff5e2;font:600 16px Saira;cursor:pointer;transition:transform .2s}.forge-button:before{content:'';position:absolute;inset:0;z-index:-1;background:#c42c00;transition:background .2s}.forge-button.secondary:before{background:#410001}.forge-button:hover:not(:disabled){transform:translateY(-2px)}.forge-button:hover:not(:disabled):before{background:#791b08}.hammer{width:22px;height:22px;flex:none;transform-origin:30% 80%}.forge-button:is(:hover,:focus-visible):not(:disabled) .hammer{animation:forge-tap .45s ease-out 1}.forge-button:active:not(:disabled){transform:translateY(1px)}.forge-button:focus-visible{outline:3px solid #410001;outline-offset:5px}.forge-button:disabled{color:#796859;cursor:default}.forge-button:disabled:before{background:#e9dfc9}@keyframes forge-tap{35%{transform:rotate(-18deg)}70%{transform:rotate(8deg)}100%{transform:rotate(0)}}@media(prefers-reduced-motion:reduce){.forge-button{transition:none}.hammer{animation:none!important}.forge-button:hover:not(:disabled){transform:none}}@media(max-width:660px){.gallery{grid-template-columns:1fr}.gallery img{height:360px}}
+.catalog-preview { display: block; width: 100%; height: 850px; border: 1px solid #c6b9a5; }
+.choice-example { display: grid; gap: 10px; margin-block: 10px; }
+.choice-example label { display: flex; align-items: center; gap: 8px; }
+.choice-example fieldset { border: 1px solid #41000135; margin: 0; }
+.choice-example input { accent-color: #410001; }
+
+.brand-moodboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 22px;
+}
+.brand-moodboard figure { min-width: 0; margin: 0 }
+.brand-moodboard figcaption { margin-top: 6px }
+.moodboard-crop { position: relative; overflow: hidden; background: #e9dfc9 }
+.moodboard-crop img {
+  position: absolute;
+  width: var(--image-width);
+  max-width: none;
+  height: auto;
+  left: var(--offset-x);
+  top: var(--offset-y);
+  display: block;
+}
+#logo h3 { margin-top: 24px }
+.options label:has(input:checked) {
+  color: #f5efe2;
+  border-color: #410001;
+  background: #410001;
+}
+.options input { accent-color: #a63817 }
+.workshop-link{text-decoration:underline;text-underline-offset:4px;padding:8px 0}
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+}
+</style>
+<main><svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="hammer-icon" viewBox="0 0 24 24"><path d="M14 9L5 20M10 5l4-3 7 7-3 4z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></symbol></svg><header><p>Forge the Board · Design system · v12</p><h1>Design system<br>Forge the Board</h1><p>Ołówkowe postacie, pojazdy i budynki dalej pokazują, jakie światy można tworzyć w warsztacie.</p><p><em>Baza projektu</em> · Saira, IM FELL, papier #F5EFE2, bordo #410001, akcent #D82F00.</p><nav><a href="#logo">Logotyp i moodboard</a><a href="#mapa">Mapa</a><a href="#ikony">Ikony</a><a href="#fundamenty">Kolor i typografia</a><a href="#komponenty">Komponenty</a><a href="#katalog">Chipsy i karty</a><a href="#ramki-kart">Ramka i animacja</a><a href="#ilustracje">Ilustracje</a><a href="#cta">CTA</a></nav></header>
+<section id="logo"><h2>Logotyp i znak</h2><div class="swatches">
+<figure class="brand-sample"><img src="../assets/logo.svg" alt="Forge the Board"><figcaption>Poziomy logotyp z nagłówka i stopki</figcaption></figure>
+<figure class="brand-sample dark"><img src="../assets/logo-light.svg" alt="Jasny logotyp Forge the Board"><figcaption>Jasny plik marki do ciemnej powierzchni</figcaption></figure>
+<figure class="brand-sample"><img class="anvil" src="../assets/anvil.svg" alt="Kowadło"><figcaption>Sygnet · istniejący favicon i znak w interfejsie</figcaption></figure>
+<figure class="brand-sample"><img class="app-icon-art" src="app-icon.svg" alt="Ikona aplikacji Forge the Board z tekstem na kowadle"><figcaption>Ikona aplikacji · dostarczony SVG</figcaption></figure></div>
+<p>Wersję piętrową „FORGE / the / BOARD” pokazuje moodboard, m.in. na czapkach i w makiecie telefonu. Pozioma wersja mieści się w pasku nawigacji, a ikona aplikacji zawiera pełny napis FORGE / the / BOARD. Zachowuj proporcje plików i dobieraj wersję do koloru powierzchni. Przed eksportem ikony sprawdź czytelność przy 16, 32 i 64 px oraz maski docelowej platformy. <a href="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png">Moodboard marki</a></p>
+<h3>Moodboard marki</h3>
+<div class="brand-moodboard">
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:454/363;--image-width:308.811%;--offset-x:-2.203%;--offset-y:-2.479%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Logotyp na ścianie recepcji">
+    </div>
+    <figcaption>Logotyp na ścianie recepcji</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:456/363;--image-width:307.456%;--offset-x:-103.947%;--offset-y:-2.479%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Kufle z logotypem">
+    </div>
+    <figcaption>Kufle z logotypem</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:452/363;--image-width:310.177%;--offset-x:-207.965%;--offset-y:-2.479%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Bordowa i kremowa czapka">
+    </div>
+    <figcaption>Bordowa i kremowa czapka</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:454/361;--image-width:308.811%;--offset-x:-2.203%;--offset-y:-105.263%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Figurka z logotypem na tarczy">
+    </div>
+    <figcaption>Figurka z logotypem na tarczy</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:455/361;--image-width:308.132%;--offset-x:-104.396%;--offset-y:-105.263%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Snowboard">
+    </div>
+    <figcaption>Snowboard</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:452/361;--image-width:310.177%;--offset-x:-207.965%;--offset-y:-105.263%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Bordowa torba">
+    </div>
+    <figcaption>Bordowa torba</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:453/364;--image-width:309.492%;--offset-x:-2.208%;--offset-y:-205.495%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Koszulka gracza">
+    </div>
+    <figcaption>Koszulka gracza</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:457/364;--image-width:306.783%;--offset-x:-103.501%;--offset-y:-205.495%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Logotyp na samolocie">
+    </div>
+    <figcaption>Logotyp na samolocie</figcaption>
+  </figure>
+  <figure>
+    <div class="moodboard-crop" style="aspect-ratio:453/364;--image-width:309.492%;--offset-x:-207.285%;--offset-y:-205.495%">
+      <img src="../Moodboard%20Forge%20the%20Board%20po%20zamianie%20paneli.png" alt="Ikona aplikacji na telefonie">
+    </div>
+    <figcaption>Ikona aplikacji na telefonie</figcaption>
+  </figure>
+</div>
+</section>
+<section id="mapa"><h2>Hero z wygaszeniem ilustracji</h2><p>Ilustracja wypełnia tło hero od krawędzi do krawędzi. Główny motyw jest widoczny po prawej, a po lewej obraz płynnie przechodzi w papier pod tekstem. Na telefonie obraz odsłania się pod tekstem. Podstrony mają niższe hero. Strona główna i listing używają mapy, a szczegóły karty pokazują jej ilustrację.</p><p>CartoVox wygasza atlas pod lewą kolumną i pokazuje jego szczegóły po prawej. Niżej daje mapie ramę interfejsu. Dla Forge the Board te dwa kadry mogą połączyć się w istniejącym przejściu podczas przewijania.</p><div class="grid"><figure><div class="hero"><h3>Wykuj swoją grę</h3><p>Od pierwszej iskry do własnego świata</p><button class="forge-button" type="button" data-dialog>Wejdź do kuźni <svg class="hammer" viewBox="0 0 24 24" aria-hidden="true"><use href="#hammer-icon"/></svg></button><i class="pin" aria-hidden="true"></i></div><figcaption>Propozycja · mapa w hero. Punkt oznacza obszar, który widz ma rozpoznać.</figcaption></figure><figure><div class="tablet"><div class="toolbar">Wybrzeże Gryfów</div><i class="pin" aria-hidden="true"></i></div><figcaption>Propozycja · ten sam kadr w tablecie. Znacznik służy porównaniu.</figcaption></figure></div><p>Na desktopie próbę zacząłbym od zatoki lub wyspy po prawej stronie nagłówka. Przy zwężaniu kadru ten obszar przesuwa się bliżej środka. Na telefonie tekst jest u góry, a mapa odsłania się pod nim. Do oceny w ruchu zostaje zakotwiczenie punktu w rzeczywistym obrazie podczas zmiany skali. <a href="https://cartovox.org/#experience">CartoVox · prezentacja aplikacji</a></p></section>
+<section id="ikony"><h2>Ikony warsztatu · wariant projektowy</h2><p>Ten wariant pokazuje wybór za pomocą ikon. Strona główna używa numerów, opisów i akcentu żaru. <a href="../index.html#warsztat">Zobacz zakładki na stronie głównej</a></p><p>W Inkling rozpoznawalna sylwetka stempla ma podpis, a wybór i fokus mają osobne obrysy. W Forge the Board ten układ pasuje do trzech istniejących opcji. Bordowe tło i jasna ikona wyróżniają zaznaczoną opcję. Proste ikony ułatwiają skanowanie wyboru, a pełne szkice zachowują szczegóły w większych kadrach.</p>
+<fieldset class="demo"><legend>Próba wyboru · użyj kliknięcia lub strzałek</legend><div class="options">
+<label><input type="radio" name="workshop" id="map" checked><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5l6-2 8 2 6-2v16l-6 2-8-2-6 2z M8 3v16 M16 5v16"/></svg>Mapa</label><label><input type="radio" name="workshop" id="cards" ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h13v17H7z M4 17l-2-13 3-1 M11 9h5 M11 13h5"/></svg>Karty</label><label><input type="radio" name="workshop" id="rules" ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5z M8 8h8 M8 12h8 M8 16h6"/></svg>Zasady</label>
+</div><p class="panel" id="map-p">Mapa · podgląd świata i jego miejsc.</p><p class="panel" id="cards-p">Karty · podgląd elementów do gry.</p><p class="panel" id="rules-p">Zasady · podgląd przykładowej karty zasad.</p></fieldset>
+<p>Proponowane parametry ikon to pole 24 × 24 px i kreska 1,5 px. Pomarańczowy obrys sygnalizuje wybór, a ciemny obrys odsunięty od przycisku wskazuje fokus. <a href="https://inkling.digital/map-builder">Inkling · demo mapy</a></p></section>
+<section id="fundamenty"><h2>Kolor i typografia</h2><div class="swatches">
+<figure><div class="chip" style="background:#F5EFE2"></div><figcaption><b>Papier</b> · <code>#F5EFE2</code><br>Główne tło</figcaption></figure><figure><div class="chip" style="background:#E9DFC9"></div><figcaption><b>Ciemniejszy papier</b> · <code>#E9DFC9</code><br>Ramy i powierzchnie wtórne</figcaption></figure><figure><div class="chip" style="background:#410001"></div><figcaption><b>Bordo</b> · <code>#410001</code><br>Nagłówki, tekst i ciemne panele</figcaption></figure><figure><div class="chip" style="background:#D82F00"></div><figcaption><b>Żar</b> · <code>#D82F00</code><br>CTA, wybór i krótkie akcenty</figcaption></figure><figure><div class="chip" style="background:#796859"></div><figcaption><b>Tekst pomocniczy</b> · <code>#796859</code><br>Opisy i podpisy</figcaption></figure><figure><div class="chip" style="background:#B5B79B"></div><figcaption><b>Szałwia</b> · <code>#B5B79B</code><br>Kolor uzupełniający w palecie CSS</figcaption></figure></div>
+<p>Wartości kolorów i rodziny pochodzą z <a href="../styles.css">styles.css</a>. Proponowana skala porządkuje zastosowania w przykładach poniżej.</p>
+<p><strong>Paleta katalogu.</strong> Szałwia dla sojuszników (<code>#DCE9D9</code> / <code>#305840</code>), miód dla miejsc (<code>#F6E1AC</code> / <code>#6D480B</code>) błękit dla przygód (<code>#D9E9F2</code> / <code>#264E72</code>) i papier dla przedmiotów (<code>#E9DFC9</code> / <code>#796859</code>). Bordo oznacza aktywny filtr. Bordo wyróżnia też przycisk zapisu, bieżącą stronę i wybór w polach formularza. Etykiety i znaczniki przekazują tę samą informację tekstem lub kształtem.</p><div class="type"><div><b style="font-size:clamp(34px,7vw,72px);line-height:1.05;font-weight:800">Wykuj swoją grę</b><p>Saira 800 · hero · 34–72 px w przykładzie</p></div><div><b style="font-size:32px;font-weight:700">Twój warsztat</b><p>Saira 700 · tytuł sekcji · 32 px</p></div><div><p>Każda przygoda potrzebuje swojego miejsca.</p><small>Saira 400 · tekst główny · 16 px, interlinia 1,6</small></div><div><em style="font-size:24px">Od pierwszej iskry do własnego świata</em><p>IM FELL kursywa · krótkie wprowadzenie lub podpis · 24 px</p></div></div>
+<p>Proponowane odstępy do składania nowych ekranów to 4, 8, 12, 16, 24, 32 i 48 px. Grupuj opis z jego etykietą, a między rodzinami komponentów zostaw większą przerwę. Utrzymuj pełne podpisy na wąskim ekranie.</p></section>
+
+<section id="cta"><h2>Przyciski z charakterem kuźni</h2><p>Przyciski mają prostokątny kształt i proste narożniki. Najedź na przycisk lub użyj klawisza Tab.</p><div class="cta-stage"><button class="forge-button" data-dialog>Wejdź do kuźni <svg class="hammer" viewBox="0 0 24 24" aria-hidden="true"><use href="#hammer-icon"/></svg></button><a class="forge-button secondary" href="../karta.html?karta=twierdza-brzasku">Szczegóły karty <svg class="hammer" viewBox="0 0 24 24" aria-hidden="true"><use href="#hammer-icon"/></svg></a><button class="forge-button" disabled>Niedostępny</button></div><p>Hover przyciemnia powierzchnię, unosi CTA o 2 px i uruchamia pojedynczy mały zamach młotka. Wciśnięcie opuszcza przycisk, a fokus otrzymuje obrys. Ustawienie ograniczenia ruchu wyłącza animację. Minimalna wysokość wynosi 56 px. Długi podpis może się zawijać.</p></section><section id="komponenty"><h2>Komponenty i stany</h2><div class="grid">
+<article class="card"><h3>Przyciski i linki</h3><div class="actions"><button class="forge-button" type="button" id="show-demo">Wejdź do kuźni <svg class="hammer" viewBox="0 0 24 24" aria-hidden="true"><use href="#hammer-icon"/></svg></button><a class="workshop-link" href="../index.html#warsztat">Zajrzyj do warsztatu <span aria-hidden="true">↓</span></a><button class="forge-button" type="button" disabled>Niedostępny</button></div><p>Wypełnione CTA na stronie głównej używają młotka. Link tekstowy „Zajrzyj do warsztatu” wskazuje strzałką sekcję poniżej. Przykład zawiera stan wyłączony jako propozycję. Najedź lub użyj Tab, żeby zobaczyć zmianę stanu.</p></article>
+<article class="card"><h3>Rozwijane FAQ</h3><details open><summary>Co mogę zobaczyć już teraz?</summary><p>Wizję warsztatu i przykładowe materiały gry.</p></details><details><summary>Kiedy będzie można zacząć?</summary><p>Data udostępnienia aplikacji pozostaje otwarta.</p></details><p>Komponent z landingu. Wiersz łączy pytanie ze wskaźnikiem, a odpowiedź rozwija się poniżej. Enter i spacja przełączają rozwinięcie.</p></article>
+<article class="card"><h3>Pola tekstowe · propozycja</h3><label for="project-name">Nazwa projektu</label><input id="project-name" type="text" placeholder="Wybrzeże Gryfów" aria-describedby="project-hint"><small id="project-hint">Nazwa pojawi się na liście projektów.</small><label for="project-email">Adres e-mail</label><input id="project-email" type="email" value="tomas@" aria-invalid="true" aria-describedby="email-error"><small class="error" id="email-error">Podaj pełny adres, np. imie@example.com.</small><label for="description">Opis świata</label><textarea id="description" rows="2"></textarea><p>Etykieta zostaje nad polem. Opis lub komunikat błędu pojawia się pod nim. Przykładowy błąd ma tekst i obrys.</p></article>
+<article class="card"><h3>Wybór opcji · propozycja</h3><label for="project-type">Typ projektu</label><select id="project-type"><option>Gra planszowa</option><option>Gra karciana</option><option>Gra fabularna</option></select><label class="inline"><input type="checkbox"> Pokaż projekty koncepcyjne</label><label for="locked-option">Dostęp</label><select id="locked-option" disabled><option>Tylko właściciel</option></select><div class="choice-example"><fieldset><legend>Kolejność</legend>
+<label><input type="radio" name="example-order" checked> Kolejność talii</label>
+<label><input type="radio" name="example-order"> Od najwyższej wartości</label>
+</fieldset></div><p>Lista służy do wyboru jednej wartości. Próbki checkboxa i radio pokazują kontrolki formularza. Pole wyboru obsługuje niezależne ustawienie. W widoku warsztatu trzy widoczne opcje pozostają zakładkami z jednym wspólnym panelem.</p></article>
+<article class="card"><h3>Dialog</h3><p>Otwórz go przyciskiem „Wejdź do kuźni” w próbce. Landing używa dialogu do informacji o etapie projektu. W próbce tytuł nazywa temat, a przycisk i Escape zamykają okno. Po zamknięciu fokus wraca do CTA.</p><dialog id="component-dialog" aria-labelledby="dialog-title"><h3 id="dialog-title">Forge the Board powstaje</h3><p>Możesz zobaczyć przykładową mapę i materiały w warsztacie.</p><form method="dialog"><button class="forge-button secondary">Zamknij</button></form></dialog></article>
+<article class="card"><h3>Nawigacja i podgląd warsztatu</h3><p>Poziomy logotyp prowadzi na początek, a linki nawigacji do sekcji. Na telefonie menu rozwija przycisk. Podgląd warsztatu łączy nazwę sekcji, wybór „Mapa”, „Karty” lub „Zasady” i jeden panel treści. Ikona może wspierać tytuł opcji.</p><a href="#ikony">Zobacz próbkę ikon i wyboru</a></article></div>
+<p>Proponowany rozmiar kontrolek to co najmniej 44 px wysokości w przykładach. Sprawdź kontrast etykiet i stanów, czytelny fokus oraz kolejność Tab przed wdrożeniem. <a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG</a> · <a href="https://www.w3.org/WAI/ARIA/apg/patterns/">Wzorce interakcji APG</a></p></section>
+<section id="katalog">
+  <h2>Filtrowanie, etykiety i karty</h2>
+  <p>Podgląd talii „Wybrzeża Gryfów”. Wybierz typ karty lub przejdź na drugą stronę, żeby zobaczyć pozostałe karty. „Szczegóły karty” otwierają widok z zasadą i przyciskiem „Zapisz”.</p>
+  <p><a href="../karty.html#talia">Otwórz pełny listing kart</a></p>
+  <iframe class="catalog-preview" id="catalog-preview" src="../karty.html?podglad=talia" title="Talia wyprawy z filtrami i paginacją" loading="lazy"></iframe>
+  <div class="grid">
+    <article><h3>Chipsy i etykiety</h3><p>„Wszystkie” jest aktywne na starcie. Pozostałe filtry to Miejsce, Sojusznik, Przygoda i Przedmiot. Aktywny chips ma bordowe wypełnienie z jasną nazwą. Etykieta typu na karcie łączy emblemat i nazwę.</p></article>
+    <article><h3>Paginacja</h3><p>„← Wstecz”, numer i „Dalej →” zmieniają stronę wyników. Bieżący numer jest bordowy. Na krańcach nie można przejść dalej w danym kierunku. Przy jednej stronie paginacja znika.</p></article>
+  </div>
+</section>
+<section id="ramki-kart"><h2>Ramka i animacja karty</h2><div class="grid">
+<figure><img src="evidence/card-frame.png" alt="Karta Twierdza Brzasku ze złotobrązową ramką i drobnymi kowadłami po czterech bokach" style="display:block;width:100%;max-width:480px;height:auto"><figcaption>Twierdza Brzasku z listingu kart</figcaption></figure>
+<div><h3>Ramka według kategorii</h3><p>Pełna obwódka ma 24 px grubości i promień 12 px. Jej kolor odpowiada kategorii karty. Na każdym boku znajdują się małe kowadła z logo. Ich podstawy są skierowane do wnętrza karty, odstęp wynosi około jednej szerokości znaku, a ornament wygasa przy końcach boków. Ikona i podpis wskazują typ karty.</p>
+<h3>Od malunku przez szkic do malunku</h3><p>W spoczynku widać gotową kolorową ilustrację. Najechanie lub fokus klawiatury uruchamia jedno przejście trwające około 750 ms. Kolor ustępuje papierowi z mocną, ciągłą kreską w kolorze ramki, potem wraca malunek. Na dotyku i przy ograniczonym ruchu ilustracja pozostaje statyczna.</p><p><a href="../karty.html#talia">Sprawdź animację na listingu kart</a></p></div></div></section>
+<section id="ilustracje"><h2>Ołówkowe ilustracje</h2><p>Dziewięć szkiców użytych na stronie głównej. Na niej i na podstronach z przewagą tekstu szkice mogą pojawiać się przy krawędziach sekcji, w niskim kryciu i z wygaszeniem ku tekstowi. Listing i szczegóły kart mają spokojne papierowe tło treści oraz własne ilustracje w hero i kartach.</p><h3>Tworzenie nowych szkiców</h3><p>Pokazuj pojedynczy obiekt lub postać w ujęciu trzy czwarte. Buduj formę cienką, lekko drżącą kreską o zmiennym nacisku. Cienie twórz krótkim szrafowaniem i krzyżowaniem linii. Pozostawiaj drobne przerwy i dużo niezarysowanego papieru. Mocniejsze akcenty skupiaj przy ważnych krawędziach, twarzy i detalach mechanicznych.</p><p>Stosuj ciepłe monochromatyczne bordo lub sepię, przejrzyste tło i wyraźną sylwetkę. Przygotuj duży oryginał, zachowaj swobodny margines i oceń czytelność w docelowym rozmiarze. Gęstość kreski i detal dopasuj do zamku, czarodzieja i statku poniżej. Sekcja ze szkicami otrzymuje spokojne papierowe tło.</p><div class="gallery"><figure><img src="../assets/illustrations/castle.svg" alt="Zamek"></figure><figure><img src="../assets/illustrations/space-base.svg" alt="Baza kosmiczna"></figure><figure><img src="../assets/illustrations/wizard.svg" alt="Czarodziej"></figure><figure><img src="../assets/illustrations/dwarf.svg" alt="Krasnolud"></figure><figure><img src="../assets/illustrations/spaceship.svg" alt="Statek kosmiczny"></figure><figure><img src="../assets/illustrations/cowboy.svg" alt="Kowboj"></figure><figure><img src="../assets/illustrations/forge.svg" alt="Kuźnia"></figure><figure><img src="../assets/illustrations/dragon.svg" alt="Smok"></figure><figure><img src="../assets/illustrations/knight.svg" alt="Rycerz"></figure></div></section>
+<footer><p>Próbki pól i ikon warsztatu to warianty projektowe. Podgląd talii korzysta z działającego listingu. Przejście mapy do tabletu można zobaczyć na stronie głównej.</p><a href="moodboard.html">Wróć do porównania witryn</a></footer>
+</main><script>document.querySelector("#show-demo").addEventListener("click", () => document.querySelector("#component-dialog").showModal());document.querySelectorAll("[data-dialog]").forEach(button => button.addEventListener("click", () => document.querySelector("#component-dialog").showModal()));
+
+const catalogPreview = document.querySelector('#catalog-preview');
+window.addEventListener('message', event => {
+  const height = event.data?.forgeCatalogHeight;
+  if (event.source === catalogPreview.contentWindow && Number.isInteger(height) && height > 0 && height < 10000) {
+    catalogPreview.style.height = height + 2 + 'px';
+  }
+});
+</script></html>

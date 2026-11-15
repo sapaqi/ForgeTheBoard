@@ -1,0 +1,69 @@
+{
+  "limitations": [
+    "Dwa kadry desktopowe tej samej strony na witrynę",
+    "Nie mierzono dokładnych stylów ani czasu animacji",
+    "Inkling demo pokazuje fokus i zaznaczenie. Nie testowano umieszczania stempla."
+  ],
+  "screens": [
+    {
+      "viewport_css_px": null,
+      "captured_on": "2026-11-15",
+      "id": "pentiment",
+      "screenshot": "evidence/pentiment.jpg",
+      "frame": "hero",
+      "url": "https://pentiment.obsidian.net/",
+      "page_type": "landing page"
+    },
+    {
+      "viewport_css_px": null,
+      "captured_on": "2026-11-15",
+      "id": "pentiment-dalej",
+      "screenshot": "evidence/pentiment-dalej.jpg",
+      "frame": "niższa sekcja tej samej strony",
+      "url": "https://pentiment.obsidian.net/",
+      "page_type": "landing page"
+    },
+    {
+      "viewport_css_px": null,
+      "captured_on": "2026-11-15",
+      "id": "inkling",
+      "screenshot": "evidence/inkling.jpg",
+      "frame": "hero",
+      "url": "https://inkling.digital/map-builder",
+      "page_type": "landing page"
+    },
+    {
+      "viewport_css_px": null,
+      "captured_on": "2026-11-15",
+      "id": "inkling-demo",
+      "screenshot": "evidence/inkling-demo.jpg",
+      "frame": "niższa sekcja tej samej strony",
+      "url": "https://inkling.digital/map-builder",
+      "page_type": "landing page"
+    },
+    {
+      "viewport_css_px": {
+        "height": 720,
+        "width": 1280
+      },
+      "page_type": "landing page",
+      "captured_on": "2026-11-15",
+      "screenshot": "evidence/cartovox-app.jpg",
+      "frame": "hero",
+      "id": "cartovox-app",
+      "url": "https://cartovox.org/"
+    },
+    {
+      "viewport_css_px": {
+        "height": 720,
+        "width": 1280
+      },
+      "page_type": "landing page",
+      "captured_on": "2026-11-15",
+      "screenshot": "evidence/cartovox-dalej.jpg",
+      "frame": "niższa sekcja tej samej strony",
+      "id": "cartovox-dalej",
+      "url": "https://cartovox.org/#experience"
+    }
+  ]
+}
