@@ -54,3 +54,9 @@ node scripts/sync-animation-vendor.mjs
 - `server.mjs` — lokalny serwer HTTP.
 
 ForgeTheBoard jest projektem w budowie. Przycisk „Wejdź do kuźni” pokazuje informację o tym etapie. Docelowy adres rejestracji można podłączyć przez `REGISTRATION_URL` w `app.js`.
+
+## Design System
+
+[Dokumentacja komponentów v2](netlify-design-system/sources/research-forgetheboard/dokumentacja-komponentow.md) opisuje wzorce marki, układu i interfejsu. [Direction Study](netlify-design-system/sources/research-forgetheboard/direction-study.html) zawiera próbki komponentów, w tym działający katalog kart.
+
+Podgląd HTML jest w pliku [netlify-design-system/index.html](netlify-design-system/index.html). Na Netlify opublikuj katalog netlify-design-system. Zawiera wszystkie pliki podglądu i nie wymaga kroku budowania.

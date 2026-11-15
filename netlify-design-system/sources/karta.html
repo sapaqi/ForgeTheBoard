@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Karta gry · Forge the Board</title>
+  <link rel="icon" href="assets/anvil.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/cards.css">
+  <script src="assets/vendor/motion.js" defer></script>
+  <script src="assets/js/site-menu.js" defer></script>
+  <script src="assets/js/cards.js" defer></script>
+</head>
+<body class="cards-site" data-card-view="detail">
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ForgeTheBoard — początek strony"><img src="assets/logo.svg" width="270" height="32" alt="ForgeTheBoard"></a>
+    <nav class="desktop-nav" aria-label="Nawigacja główna">
+      <a href="index.html#warsztat">Warsztat</a><a href="karty.html" aria-current="location">Karty gry</a><a href="index.html#od-pomyslu">Od pomysłu do gry</a><a href="index.html#dolacz">O projekcie</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu"><span></span><span></span></button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Nawigacja mobilna" hidden>
+      <a href="index.html#warsztat">Warsztat</a><a href="karty.html" aria-current="location">Karty gry</a><a href="index.html#od-pomyslu">Od pomysłu do gry</a><a href="index.html#dolacz">O projekcie</a>
+    </nav>
+  </header>
+  <svg class="deck-symbols" width="0" height="0" aria-hidden="true">
+    <symbol id="forge-hammer" viewBox="0 0 24 24"><path d="M14 9L5 20M10 5l4-3 7 7-3 4z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></symbol>
+  </svg>
+  <main id="main">
+    <div id="card-detail"></div>
+    <noscript><p class="deck-wrap">Włącz JavaScript, aby wyświetlić kartę „Wybrzeża Gryfów”.</p></noscript>
+  </main>
+  <footer class="deck-footer deck-wrap">
+    <a href="index.html">Forge the Board</a>
+    <p>„Wybrzeże Gryfów” to przykładowa planszówka stworzona na potrzeby warsztatu.</p>
+  </footer>
+</body>
+</html>
