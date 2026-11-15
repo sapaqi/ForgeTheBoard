@@ -12,19 +12,21 @@
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.replace('no-js','js');document.documentElement.classList.add(new URLSearchParams(location.search).get('hero')==='parchment'?'hero-parchment':'hero-fade');</script>
   <script src="app.js" defer></script>
+  <script src="assets/js/site-menu.js" defer></script>
   <script src="assets/vendor/motion.js" defer></script>
   <script src="assets/js/motion-effects.js" defer></script>
 </head>
 <body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="forge-hammer" viewBox="0 0 24 24"><path d="M14 9L5 20M10 5l4-3 7 7-3 4z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></symbol></svg>
   <a class="skip-link" href="#main">Przejdź do treści</a>
   <header class="site-header">
     <a class="brand" href="#" aria-label="ForgeTheBoard — początek strony"><img src="assets/logo.svg" width="270" height="32" alt="ForgeTheBoard"></a>
     <nav class="desktop-nav" aria-label="Nawigacja główna">
-      <a href="#warsztat">Warsztat</a><a href="#od-pomyslu">Od pomysłu do gry</a><a href="#dolacz">O projekcie</a>
+      <a href="#warsztat">Warsztat</a><a href="karty.html">Karty gry</a><a href="#od-pomyslu">Od pomysłu do gry</a><a href="#dolacz">O projekcie</a>
     </nav>
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu"><span></span><span></span></button>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Nawigacja mobilna" hidden>
-      <a href="#warsztat">Warsztat</a><a href="#od-pomyslu">Od pomysłu do gry</a><a href="#dolacz">O projekcie</a>
+      <a href="#warsztat">Warsztat</a><a href="karty.html">Karty gry</a><a href="#od-pomyslu">Od pomysłu do gry</a><a href="#dolacz">O projekcie</a>
     </nav>
   </header>
   <main id="main" tabindex="-1">
@@ -35,7 +37,7 @@
           <p class="eyebrow">Od pierwszej iskry <span class="hero-tagline-tail">do własnego świata</span></p>
           <h1>Wykuj <br>swoją <em>grę.</em></h1>
           <p class="hero-description">Aplikacja do tworzenia <br>własnych gier planszowych.</p>
-          <div class="hero-actions"><button class="button" data-start>Wejdź do kuźni <span aria-hidden="true">↗</span></button><a class="text-link" href="#warsztat">Zajrzyj do warsztatu <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-actions"><button class="button" data-start>Wejdź do kuźni <span class="button-hammer" aria-hidden="true"><svg class="forge-hammer"><use href="#forge-hammer"/></svg></span></button><a class="text-link" href="#warsztat">Zajrzyj do warsztatu <span aria-hidden="true">↓</span></a></div>
           <p class="development-note"><span aria-hidden="true"></span> Kuźnia w budowie. Wyobraźnia już działa.</p>
         </div>
         <div class="chapter-two">
@@ -102,7 +104,7 @@
     <section class="finale" id="dolacz" aria-labelledby="finale-heading">
       <div class="engraving-scene" aria-hidden="true"><span class="engraving engraving-dragon engraving-left"></span><span class="engraving engraving-knight"></span></div>
       <svg class="finale-route" viewBox="0 0 1440 600" preserveAspectRatio="none" aria-hidden="true"><path d="M-80 500C100 220 250 580 410 330S790 550 1030 230 1430 300 1530-70"/><circle cx="410" cy="330" r="8"/><circle cx="1030" cy="230" r="8"/></svg>
-      <div class="finale-content"><img src="assets/anvil.svg" alt="" width="62" height="36"><p class="eyebrow">Przy tym stole jest miejsce na twoją wyobraźnię.</p><h2 id="finale-heading">Najlepsze światy<br>jeszcze nie powstały.</h2><p class="finale-tagline">Twój może być następny.</p><button class="button" data-start>Wejdź do kuźni <span aria-hidden="true">↗</span></button><p class="finale-note">ForgeTheBoard powstaje. Ty możesz już zacząć marzyć.</p></div>
+      <div class="finale-content"><img src="assets/anvil.svg" alt="" width="62" height="36"><p class="eyebrow">Przy tym stole jest miejsce na twoją wyobraźnię.</p><h2 id="finale-heading">Najlepsze światy<br>jeszcze nie powstały.</h2><p class="finale-tagline">Twój może być następny.</p><button class="button" data-start>Wejdź do kuźni <span class="button-hammer" aria-hidden="true"><svg class="forge-hammer"><use href="#forge-hammer"/></svg></span></button><p class="finale-note">ForgeTheBoard powstaje. Ty możesz już zacząć marzyć.</p></div>
       <footer class="site-footer"><a href="#" aria-label="ForgeTheBoard — wróć na początek"><img src="assets/logo.svg" width="230" height="28" loading="lazy" alt="ForgeTheBoard"></a><span>Od pierwszej iskry do własnego świata.</span><a href="#main">Wróć na początek <span aria-hidden="true">↑</span></a></footer>
     </section>
   </main>
@@ -112,10 +114,8 @@
     <p class="eyebrow">Jeszcze chwila przy palenisku</p>
     <h2 id="dialog-title">Kuźnia dopiero<br>nabiera kształtów.</h2>
     <p>ForgeTheBoard jest w trakcie tworzenia. Rejestracja nie została jeszcze uruchomiona, a pokazane ekrany przedstawiają naszą wizję aplikacji.</p>
-    <a class="button" href="#warsztat" id="dialog-workshop">Poznaj wizję warsztatu <span aria-hidden="true">↓</span></a>
+    <a class="button" href="#warsztat" id="dialog-workshop">Poznaj wizję warsztatu <span class="button-hammer" aria-hidden="true"><svg class="forge-hammer"><use href="#forge-hammer"/></svg></span></a>
     <p class="dialog-footnote">Nie zbieramy tu danych ani zapisów.</p>
   </dialog>
 </body>
 </html>
-
-

@@ -12,6 +12,12 @@ node server.mjs
 
 Otwórz http://127.0.0.1:4173/. Instalacja zależności nie jest potrzebna do uruchomienia strony. Używaj serwera HTTP — moduły Three.js nie są przeznaczone do otwierania przez `file://`.
 
+## Strony
+
+- [Strona główna](index.html)
+- [Karty gry](karty.html)
+- [Szczegóły karty „Twierdza Brzasku”](karta.html?karta=twierdza-brzasku)
+
 ## GitHub
 
 Rozpakuj archiwum i dodaj **zawartość folderu projektu** do głównego katalogu repozytorium. Zachowaj pliki `.gitignore`, `.gitattributes` oraz `.nojekyll`.

@@ -291,9 +291,10 @@ h1 em, h2 em, h3 em, h4 em { color: inherit; font-weight: inherit; }
   width: var(--art-width); aspect-ratio: var(--art-ratio); opacity: var(--art-opacity, .075);
 }
 .engraving::before {
-  content: ''; position: absolute; inset: 0; background: var(--ink);
-  -webkit-mask: var(--art) center / contain no-repeat;
-  mask: var(--art) center / contain no-repeat;
+  content: ''; position: absolute; inset: 0;
+  /* Background images also load when the homepage is opened from disk. */
+  background: var(--art) center / contain no-repeat;
+  filter: brightness(0) invert(8%) sepia(90%) saturate(5000%) hue-rotate(350deg) brightness(.72);
 }
 .engraving-left {
   -webkit-mask-image: linear-gradient(90deg, #000 10%, #000b 52%, transparent 100%);
@@ -414,3 +415,53 @@ h1 em, h2 em, h3 em, h4 em { color: inherit; font-weight: inherit; }
 }
 
 
+/* Align hero and content columns with the brand inside the site panel. */
+:root {
+  --site-panel-inset: 4.5%;
+  --site-panel-padding: 20px;
+  --site-panel-border: 1px;
+  --site-content-inset: calc(var(--site-panel-inset) + var(--site-panel-padding) + var(--site-panel-border));
+}
+.cards-site .site-header {
+  inset-inline: var(--site-panel-inset);
+  padding-inline: var(--site-panel-padding);
+}
+
+.forge-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  gap: 16px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 0;
+  background: #c42c00;
+  color: #fff5e2;
+  font-weight: 650;
+  transition: background .2s ease, transform .2s ease;
+}
+.forge-cta-secondary { background: var(--ink); }
+.forge-cta:hover { transform: translateY(-2px); background: #791b08; }
+.forge-cta:active { transform: translateY(1px); }
+.forge-hammer { width: 22px; height: 22px; flex: none; transform-origin: 30% 80%; }
+.forge-cta:is(:hover, :focus-visible) .forge-hammer { animation: forge-tap .45s ease-out; }
+@keyframes forge-tap { 35% { transform: rotate(-18deg); } 70% { transform: rotate(8deg); } }
+
+@media (min-width: 1600px) {
+  :root { --site-panel-inset: 6%; }
+}
+@media (max-width: 760px) {
+  :root { --site-panel-inset: 0px; --site-panel-padding: 22px; --site-panel-border: 0px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .forge-cta { transition: none; }
+  .forge-cta:is(:hover, :active) { transform: none; }
+  .forge-cta:is(:hover, :focus-visible) .forge-hammer { animation: none; }
+}
+
+.button:is(:hover, :focus-visible) > .button-hammer { transform: none; }
+.button-hammer .forge-hammer { display: block; width: 1em; height: 1em; }
+@media (prefers-reduced-motion: no-preference) {
+  .button:is(:hover, :focus-visible) > .button-hammer .forge-hammer { animation: forge-tap .45s ease-out; }
+}
