@@ -128,7 +128,6 @@
 .deck-stats [data-stat="route"] { --stat-ink: #914125; --stat-tint: #f4d8c5; }
 .deck-stats [data-stat="scout"] { --stat-ink: #5a417c; --stat-tint: #e7def1; }
 .deck-stats [data-stat="charge"] { --stat-ink: #7b4911; --stat-tint: #f6e1ac; }
-.deck-rule-meta .deck-stats { margin: 8px 0 0; }
 .cards-site .deck-art > .hero-paint {
   display: block;
   position: absolute;
@@ -224,7 +223,7 @@
   display: flex;
   min-width: 0;
 }
-.deck-tile-link {
+.deck-tile-link, .deck-tile-body {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -255,19 +254,31 @@
 .detail-hero .deck-voice { max-width: 36ch; }
 .deck-rules {
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) 2fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
   gap: 24px clamp(24px, 6vw, 80px);
   padding-block: 32px;
   border-bottom: 1px solid var(--deck-line);
 }
-.deck-rule-meta { align-self: start; background: var(--paper-deep); padding: 16px 20px; }
+.deck-rule-meta { background: var(--paper-deep); padding: 16px 20px; margin-bottom: 24px; }
 .deck-rule-meta dl { margin: 0; }
 .deck-rule-meta dl div { padding-block: 8px; }
 .deck-rule-meta dl div + div { border-top: 1px solid var(--deck-line); }
 .deck-rule-meta dt { font-size: .8rem; font-weight: 650; }
 .deck-rule-meta dd { margin: 0; }
 .deck-rule-copy p { margin-block: 8px 16px; max-width: 61ch; }
-.related-grid { margin-top: 16px; }
+.related-grid { margin-top: 16px; gap: clamp(16px, 2vw, 28px); }
+.related-grid .deck-tile { --deck-frame-width: 14px; border-radius: 8px; }
+.related-grid .deck-tile-heading { min-height: 64px; gap: 8px; padding: 8px 10px; }
+.related-grid .deck-type-emblem { width: 34px; height: 34px; }
+.related-grid .deck-tile h3 { font-size: clamp(1rem, 1.5vw, 1.25rem); }
+.related-grid .deck-tile-copy { padding: 12px; font-size: .875rem; }
+.related-grid .deck-tile-actions { padding: 0 12px 12px; }
+.related-grid .forge-cta { gap: 8px; padding-inline: 10px; }
+
+@media (min-width: 1060px) {
+  .related-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 .deck-missing { padding-block: 116px 36px; }
 .deck-footer { border-top: 1px solid var(--deck-line); font-size: .875rem; }
 .deck-footer a { font-weight: 750; }

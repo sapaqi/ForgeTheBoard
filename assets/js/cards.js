@@ -140,15 +140,14 @@ function saveButton(card) {
     aria-pressed="${isSaved}"><span>${isSaved ? 'Zapisano' : 'Zapisz'}</span> ${hammer}</button>`;
 }
 
-function cardTile(card) {
-  return `<article class="deck-tile" data-type="${card.type}">
-    ${framePattern}
-    <a class="deck-tile-link" href="${cardUrl(card)}">
+function cardTile(card, { current = false } = {}) {
+  const heading = current ? 'h2' : 'h3';
+  const body = `
       <div class="deck-tile-heading">
         ${typeEmblem(card)}
         <div>
           <span class="deck-type-name">${types[card.type]}</span>
-          <h3>${card.title}</h3>
+          <${heading}>${card.title}</${heading}>
         </div>
       </div>
       ${art(card)}
@@ -158,9 +157,11 @@ function cardTile(card) {
       </div>
       <div class="deck-tile-actions">
         ${stats(card)}
-        <span class="forge-cta forge-cta-secondary">Szczegóły karty ${hammer}</span>
-      </div>
-    </a>
+        ${current ? '' : `<span class="forge-cta forge-cta-secondary">Szczegóły karty ${hammer}</span>`}
+      </div>`;
+  return `<article class="deck-tile${current ? ' deck-tile-current' : ''}" data-type="${card.type}">
+    ${framePattern}
+    ${current ? `<div class="deck-tile-body">${body}</div>` : `<a class="deck-tile-link" href="${cardUrl(card)}">${body}</a>`}
   </article>`;
 }
 
@@ -237,12 +238,12 @@ function renderDetail() {
     </div>
   </section>
   <section class="deck-rules deck-wrap" aria-labelledby="rule-title">
-    <aside class="deck-rule-meta" aria-label="Informacje o karcie">
-      <dl><div><dt>Rola</dt><dd>${card.label}</dd></div>
-      <div><dt>Kiedy użyć</dt><dd>${card.phase}</dd></div></dl>
-      ${stats(card)}
-    </aside>
+    ${cardTile(card, { current: true })}
     <div class="deck-rule-copy">
+      <div class="deck-rule-meta">
+        <dl><div><dt>Rola</dt><dd>${card.label}</dd></div>
+        <div><dt>Kiedy użyć</dt><dd>${card.phase}</dd></div></dl>
+      </div>
       <h2 id="rule-title">Efekt karty</h2><p>${card.rule}</p>
       <h3>W trakcie wyprawy</h3><p>${card.tip}</p>
       ${saveButton(card)}
